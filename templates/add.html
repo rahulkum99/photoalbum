@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Photos</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+
+<body class="m-5">
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <a class="btn btn-dark my-3" href="{% url 'gallery' %}">Go Back</a>
+                <div class="card">
+                    <form method="POST" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group m-3">
+                            <label>Description</label>
+                            <input type="text" name="description" placeholder="Enter a Description"
+                                class="form-control-file">
+                        </div>
+                        <div class="form-group m-3">
+                            <label>Add New Categoty</label>
+                            <input type="text" name="new_category" placeholder="Enter a New Category"
+                                class="form-control-file">
+                        </div>
+                        <div class="form-group m-3">
+                            <label for="">Select a Category</label>
+                            <select name="category" id="category" class="form-control-file">
+                                <option value="none">select option</option>
+                                {% for cat in category %}
+                                <option value="{{cat.id}}">{{cat.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group m-3">
+                            <label>Upload Image</label>
+                            <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+                        </div>
+                        <button type="submit" class="btn btn-primary m-3">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
